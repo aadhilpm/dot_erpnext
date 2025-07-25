@@ -56,10 +56,11 @@
    "label": "Enabled"
   },
   {
-   "default": "15",
+   "default": "Every 4 Minutes",
    "fieldname": "sync_frequency",
-   "fieldtype": "Int",
-   "label": "Sync Frequency (Minutes)"
+   "fieldtype": "Select",
+   "label": "Sync Frequency",
+   "options": "Every 4 Minutes\nHourly\nDaily\nWeekly\nMonthly"
   },
   {
    "fieldname": "last_sync_datetime",

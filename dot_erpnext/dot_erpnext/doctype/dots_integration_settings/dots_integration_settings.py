@@ -6,8 +6,8 @@ class DOTSIntegrationSettings(Document):
 		if self.enabled and not self.api_token:
 			frappe.throw("API Token is required when integration is enabled")
 		
-		if self.sync_frequency and self.sync_frequency < 5:
-			frappe.throw("Sync frequency cannot be less than 5 minutes")
+		if self.enabled and not self.sync_frequency:
+			frappe.throw("Sync frequency is required when integration is enabled")
 		
 		# Validate employee mapping
 		if self.enabled and self.use_employee_mapping and not self.employee_mapping:

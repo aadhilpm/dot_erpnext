@@ -273,27 +273,12 @@ def get_sync_status():
 				"message": "Sync frequency is not configured"
 			}
 		
-		# Calculate next sync time
-		if settings.last_sync_datetime:
-			from frappe.utils import add_to_date, now_datetime
-			last_sync = get_datetime(settings.last_sync_datetime)
-			next_sync = add_to_date(last_sync, minutes=settings.sync_frequency)
-			time_to_next = (next_sync - now_datetime()).total_seconds() / 60
-			
-			return {
-				"status": "Active",
-				"sync_frequency_minutes": settings.sync_frequency,
-				"last_sync": settings.last_sync_datetime,
-				"next_sync": next_sync,
-				"minutes_to_next_sync": max(0, time_to_next),
-				"overdue": time_to_next < 0
-			}
-		else:
-			return {
-				"status": "Ready",
-				"sync_frequency_minutes": settings.sync_frequency,
-				"message": "Ready for first sync"
-			}
+		return {
+			"status": "Active" if settings.last_sync_datetime else "Ready",
+			"sync_frequency": settings.sync_frequency,
+			"last_sync": settings.last_sync_datetime,
+			"message": f"Syncing {settings.sync_frequency.lower()}" if settings.last_sync_datetime else "Ready for first sync"
+		}
 	except Exception as e:
 		return {"error": str(e)}
 
@@ -321,9 +306,20 @@ def should_sync_now(settings):
 	
 	now = now_datetime()
 	last_sync = get_datetime(settings.last_sync_datetime)
+	
+	# Check based on the frequency setting
+	frequency_map = {
+		"Every 4 Minutes": 4,
+		"Hourly": 60,
+		"Daily": 1440,  # 24 * 60
+		"Weekly": 10080,  # 7 * 24 * 60
+		"Monthly": 43200  # 30 * 24 * 60 (approximate)
+	}
+	
+	required_interval = frequency_map.get(settings.sync_frequency, 4)  # Default to 4 minutes
 	minutes_passed = (now - last_sync).total_seconds() / 60
 	
-	return minutes_passed >= settings.sync_frequency
+	return minutes_passed >= required_interval
 
 def scheduled_sync():
 	"""Scheduled sync function called when it's time to sync"""
