@@ -160,9 +160,11 @@ after_install = "dot_erpnext.dot_erpnext.setup.after_install"
 # ---------------
 
 scheduler_events = {
-	"all": [
-		"dot_erpnext.dot_erpnext.api.dots_integration.scheduled_sync_check"
-	]
+	"cron": {
+		"*/5 * * * *": [
+			"dot_erpnext.dot_erpnext.api.dots_integration.scheduled_sync_check"
+		]
+	}
 }
 
 # Testing
