@@ -1,0 +1,146 @@
+{
+ "actions": [],
+ "autoname": "field:title",
+ "creation": "2025-07-25 16:00:00",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "api_url",
+  "api_token",
+  "column_break_4",
+  "enabled",
+  "sync_frequency",
+  "last_sync_datetime",
+  "employee_mapping_section",
+  "use_employee_mapping",
+  "employee_mapping",
+  "project_mapping_section", 
+  "use_project_mapping",
+  "project_mapping"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "description": "https://site.dotshr.com/apigttc/dndApi/Attendance_bydate",
+   "fieldname": "api_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "API URL",
+   "reqd": 1
+  },
+  {
+   "description": "Bearer eyJh....",
+   "fieldname": "api_token",
+   "fieldtype": "Password",
+   "in_list_view": 1,
+   "label": "API Token",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "default": "15",
+   "fieldname": "sync_frequency",
+   "fieldtype": "Int",
+   "label": "Sync Frequency (Minutes)"
+  },
+  {
+   "fieldname": "last_sync_datetime",
+   "fieldtype": "Datetime",
+   "label": "Last Sync Date Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_mapping_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Mapping"
+  },
+  {
+   "default": "1",
+   "description": "Enable this if DOTS Employee IDs are different from ERPNext Employee IDs and need mapping",
+   "fieldname": "use_employee_mapping",
+   "fieldtype": "Check",
+   "label": "Use Employee ID Mapping"
+  },
+  {
+   "allow_bulk_edit": 1,
+   "depends_on": "use_employee_mapping",
+   "fieldname": "employee_mapping",
+   "fieldtype": "Table",
+   "label": "Employee Mapping",
+   "options": "DOTS Employee Mapping"
+  },
+  {
+   "fieldname": "project_mapping_section",
+   "fieldtype": "Section Break",
+   "label": "Project Mapping"
+  },
+  {
+   "default": "0",
+   "description": "Enable this if DOTS Project names are different from ERPNext Project names and need mapping",
+   "fieldname": "use_project_mapping",
+   "fieldtype": "Check",
+   "label": "Use Project Name Mapping"
+  },
+  {
+   "allow_bulk_edit": 1,
+   "depends_on": "use_project_mapping",
+   "fieldname": "project_mapping",
+   "fieldtype": "Table",
+   "label": "Project Mapping",
+   "options": "DOTS Project Mapping"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-07-25 17:17:13.231514",
+ "modified_by": "Administrator",
+ "module": "Dot Erpnext",
+ "name": "DOTS Integration Settings",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

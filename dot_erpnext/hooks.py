@@ -5,6 +5,17 @@ app_description = "This app is the integration of DOTS Face app to erpnext"
 app_email = "support@badeeltechnology.com"
 app_license = "mit"
 
+# Fixtures
+# --------
+fixtures = [
+	{
+		"doctype": "Custom Field",
+		"filters": [
+			["name", "in", ["Employee Checkin-custom_project"]]
+		]
+	}
+]
+
 # Apps
 # ------------------
 
@@ -83,7 +94,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "dot_erpnext.install.before_install"
-# after_install = "dot_erpnext.install.after_install"
+after_install = "dot_erpnext.dot_erpnext.setup.after_install"
 
 # Uninstallation
 # ------------
@@ -148,23 +159,11 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"dot_erpnext.tasks.all"
-# 	],
-# 	"daily": [
-# 		"dot_erpnext.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"dot_erpnext.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"dot_erpnext.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"dot_erpnext.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"all": [
+		"dot_erpnext.dot_erpnext.api.dots_integration.scheduled_sync_check"
+	]
+}
 
 # Testing
 # -------

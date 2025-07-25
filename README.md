@@ -1,33 +1,39 @@
-### Dot Erpnext
+# DOTS ERPNext Integration
 
-This app is the integration of DOTS Face app to erpnext
+ERPNext app for automated employee attendance sync with DOTS HR system.
 
-### Installation
+![DOTS Integration Settings](https://github.com/user-attachments/assets/5cf677f1-5f48-4dee-8752-8c1f2e921e19)
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+![Employee Checkin Records](https://github.com/user-attachments/assets/3b0e8cb1-db29-4081-9be1-a9a9370761e6)
+
+## Features
+
+- **Auto Sync**: Configurable periodic sync from DOTS API
+- **Mapping**: Optional employee ID and project name mapping  
+- **Geolocation**: GPS coordinates preservation
+- **Monitoring**: Sync status and error logging
+
+## Installation
 
 ```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
+bench get-app https://github.com/aadhilpm/dot_erpnext.git
 bench install-app dot_erpnext
+bench restart
 ```
 
-### Contributing
+## Setup
 
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+1. Go to **Setup > DOTS Integration Settings**
+2. Add API URL and Bearer token
+3. Configure employee/project mapping (if needed)
+4. Enable integration and set sync frequency
+5. Test connection
 
-```bash
-cd apps/dot_erpnext
-pre-commit install
-```
+## Requirements
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+- ERPNext v15+, Frappe v15+, HRMS
+- DOTS HR API access
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
+## License
 
-### License
-
-mit
+MIT
